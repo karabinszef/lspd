@@ -307,56 +307,59 @@ function fakeDiscordLogin() {
 
 
 
+const BOT_API_URL = "http://144.76.97.203:25642/members"; 
 
-// ==========================================
-// CENTRALNY PUNKT STEROWANIA - TYLKO TA LINIA!
-// ==========================================
-const AKTUALNA_ILOSC_OSOB = 50; 
-// ==========================================
-
-const LIMIT = 50;
-
-document.addEventListener("DOMContentLoaded", function() {
-    // 1. Obliczenia
-    const procent = (AKTUALNA_ILOSC_OSOB / LIMIT) * 100;
-    const wolne = LIMIT - AKTUALNA_ILOSC_OSOB;
-    const czyOtwarta = AKTUALNA_ILOSC_OSOB < 45; // Otwarta tylko gdy poniżej 45
-
-    // 2. Aktualizacja STRONY GŁÓWNEJ (Banner)
-    const homeStatus = document.getElementById('home-rekrutacja-status');
-    const homeBar = document.getElementById('home-progress-bar');
-    
-    if (homeStatus) {
-        homeStatus.innerText = czyOtwarta ? "REKRUTACJA: OTWARTA" : "REKRUTACJA: ZAMKNIĘTA";
-        homeStatus.style.color = czyOtwarta ? "#10b981" : "#ef4444";
-    }
-    if (homeBar) homeBar.style.width = procent + "%";
-
-    // 3. Aktualizacja ZAKŁADKI REKRUTACJA (Panel)
-    const recCounter = document.getElementById('current-officers');
-    const recBar = document.getElementById('status-bar');
-    const recBadge = document.getElementById('recruitment-status-badge');
-    const recMsg = document.getElementById('recruitment-msg');
-    const recVac = document.getElementById('vacancy-text');
-
-    if (recCounter) {
-        recCounter.innerText = AKTUALNA_ILOSC_OSOB;
-        recBar.style.width = procent + "%";
-        recVac.innerText = "WOLNE MIEJSCA: " + wolne;
-
-        if (czyOtwarta) {
-            recBadge.innerText = "REKRUTACJA OTWARTA";
-            recBadge.className = "status-badge-new open";
-            recMsg.innerText = "POSZUKUJEMY FUNKCJONARIUSZY. DOSTĘPNE MIEJSCA: " + wolne;
-        } else {
-            recBadge.innerText = "REKRUTACJA ZAMKNIĘTA";
-            recBadge.className = "status-badge-new closed";
-            recMsg.innerText = AKTUALNA_ILOSC_OSOB >= 50 ? 
-                " DEPARTAMENT POSIADA PEŁNĄ OBSADĘ. PODANIA SĄ AUTOMATYCZNIE ODRZUCANE." : 
-                "STAN ALARMOWY KADR. PRZYJMUJEMY TYLKO KANDYDATÓW Z WYSOKIM DOŚWIADCZENIEM.";
+async function refreshLSPD() {
+    try {
+        const response = await fetch(BOT_API_URL);
+        const data = await response.json();
+        const members = data.members;
+        
+        // --- LOGIKA REKRUTACJI ---
+        const recruitSection = document.getElementById('recruitment-status');
+        if (recruitSection) {
+            if (data.recruitment_open) {
+                recruitSection.innerHTML = `<div class="status-open">REKRUTACJA: OTWARTA (${data.total_count}/50)</div>`;
+                recruitSection.style.display = 'block';
+            } else {
+                recruitSection.innerHTML = `<div class="status-closed">REKRUTACJA: ZAMKNIĘTA (${data.total_count}/50)</div>`;
+                // Jeśli chcesz całkiem ukryć gdy zamknięta: recruitSection.style.display = 'none';
+            }
         }
-    }
-});
+
+        // --- RYSOWANIE KADRY ---
+        const ids = ['rank-hc','rank-commander','rank-captain-3','rank-captain-2','rank-captain-1','rank-lt-2','rank-lt-1','rank-sgt-2','rank-sgt-1','rank-ofc-3','rank-ofc-2','rank-ofc-1','rank-cadet'];
+        ids.forEach(id => { if(document.getElementById(id)) document.getElementById(id).innerHTML = ''; });
+
+        members.forEach(member => {
+            const match = member.username.match(/\[(\d+)\]/);
+            if (!match) return;
+            
+            const badgeNum = parseInt(match[1]);
+            const isOnDuty = (member.status === 'online');
+            
+            const cardHTML = `
+                <div class="card-auto ${isOnDuty ? 'on-duty-glow' : 'offline-card'}">
+                    ${isOnDuty ? '<div class="duty-tag">NA SŁUŻBIE</div>' : '<div class="off-duty-tag">OFFLINE</div>'}
+                    <div class="avatar-wrap" style="${!isOnDuty ? 'filter: grayscale(100%); opacity: 0.5;' : ''}">
+                        <img src="${member.avatar}" onerror="this.src='path/to/default.png'">
+                    </div>
+                    <div class="badge-display" style="${!isOnDuty ? 'background: #444;' : ''}">${badgeNum}</div>
+                    <div class="officer-name">${member.username.replace(/\[\d+\]/, '').trim()}</div>
+                </div>
+            `;
+
+            // Twoje zakresy odznak (HC: 1-3, Commander: 4-6 itd.)
+            if (badgeNum >= 1 && badgeNum <= 3) document.getElementById('rank-hc').innerHTML += cardHTML;
+            else if (badgeNum >= 130 && badgeNum <= 149) document.getElementById('rank-ofc-1').innerHTML += cardHTML;
+            // ... dopisz resztę zakresów tutaj ...
+        });
+
+    } catch (err) { console.error("Błąd API:", err); }
+}
+
+refreshLSPD();
+setInterval(refreshLSPD, 30000);
 
 
 
@@ -413,4 +416,5 @@ async function refreshLSPD() {
 }
 
 refreshLSPD();
+
 setInterval(refreshLSPD, 30000); // Odświeżanie co 30 sekund
