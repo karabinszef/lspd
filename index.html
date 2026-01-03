@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LSPD - Recruitment Portal</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="overlay"></div>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <img src="https://cdn.discordapp.com/attachments/1454227539164794993/1456627574032830547/lspd_myrp.png?ex=6959b664&is=695864e4&hm=034a9efdb7f328177ae2b3b94938f0dfe18f964e308dadd70052deb33224fb9f&" alt="LSPD Badge">
+                <div class="logo-text">
+                    <span class="main-title">LOS SANTOS POLICE DEPARTMENT</span>
+                    <span class="sub-title">OFICJALNY PORTAL REKRUTACYJNY</span>
+                </div>
+            </div>
+            <nav id="main-nav">
+                <a href="#" class="nav-link active" data-target="home">HOME</a>
+                <a href="#" class="nav-link" data-target="side-panel-label">POSZUKIWANI</a>
+                <a href="#" class="nav-link" data-target="recruitment">REKRUTACJA</a>
+                <a href="#" class="nav-link" data-target="structure">STRUKTURA</a>
+                <a href="#" class="nav-link" data-target="subunits">PODJEDNOSTKI</a>
+                <a href="#" class="nav-link" data-target="staff-area">TERMINAL E-LSPD</a>
+            </nav>
+            </nav>
+        </header>
+
+        <section id="home" class="content-section active">
+            <main class="dashboard-grid">
+                <div class="side-panel left">
+                    <h3 class="panel-label">Wymagania</h3>
+                    <div class="info-card checked">
+                        <div class="card-content"><h4>Pełna sprawność</h4><p>Status: OK</p></div>
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="info-card checked">
+                        <div class="card-content"><h4>Licencja na broń</h4><p>Wymagana</p></div>
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                </div>
+ 
+               <div class="center-content">
+    <div class="recruitment-banner">
+        <p class="announcement-text">OGŁOSZENIE DEPARTAMENTU POLICJI</p>
+        <div id="home-rekrutacja-status" class="glow-box">ŁADOWANIE...</div>
+        <div class="progress-container">
+            <div id="home-progress-bar" class="progress-bar" style="width: 0%;"></div>
+        </div>
+        <button class="btn-apply" onclick="document.querySelector('[data-target=recruitment]').click()">ZŁÓŻ PODANIE</button>
+    </div>
+</div>
+
+                <div class="side-panel left">
+    <h3 class="panel-label"><i class="fas fa-satellite-dish"></i> LIVE DISPATCH FEED</h3>
+<div id="dispatch-feed" style="min-height: 250px; font-family: 'Courier New', monospace; font-size: 0.85rem; overflow: hidden; background: rgba(0,0,0,0.3); padding: 10px; border-radius: 5px; border: 1px solid #222; position: relative;">
+    
+    <div class="dispatch-grid-overlay"></div>
+
+    </div>
+    
+            </main>
+        </section>
+
+
+
+
+
+
+
+        <section id="side-panel-label" class="content-section">
+<div class="side-panel left">
+    
+ <div class="bounty-system">
+    <h3 class="panel-label"><i class="fas fa-terminal"></i> CENTRALNA BAZA DANYCH - DOSTĘP MOCNO OGRANICZONY</h3>
+    <div class="bounty-grid" id="bounty-grid">
+        </div>
+</div>
+                
+
+
+</section>
+      <section id="recruitment" class="content-section">
+    <div class="form-panel" style="text-align: center; max-width: 900px; margin: 0 auto; position: relative;">
+        <div class="scanner-line"></div> <h2 class="glow-text">TERMINAL KADROWY LSPD</h2>
+        
+        <div class="status-container" style="margin: 40px 0;">
+            <div class="officer-stats-card">
+                <div class="stat-header">STATUS OPERACYJNY JEDNOSTKI</div>
+                <div class="main-counter">
+                    <span id="current-officers" class="digit">0</span>
+                    <span class="separator">/</span>
+                    <span class="max-digit">50</span>
+                </div>
+                <div class="progress-track">
+                    <div id="status-bar" class="progress-fill"></div>
+                </div>
+                <div class="vacancy-info" id="vacancy-text">INICJALIZACJA...</div>
+            </div>
+
+            <div id="recruitment-status-badge" class="status-badge-new">SPRAWDZANIE...</div>
+        </div>
+
+        <div class="recruitment-speech">
+            <p id="recruitment-msg" style="color: #94a3b8; min-height: 50px;"></p>
+            <a href="https://discord.gg/Bh3qnPWyKk" target="_blank" class="btn-apply-cyber">
+                <i class="fab fa-discord"></i> DOŁĄCZ DO JEDNOSTKI
+            </a>
+        </div>
+        
+        <p style="font-size: 0.65rem; color: #475569; margin-top: 30px; letter-spacing: 2px;">
+            DATABASE ENCRYPTION: AES-256 | ACTIVE PROTOCOL: LSPD-RECRUIT-V4
+        </p>
+    </div>
+
+</section>
+
+
+
+
+
+
+<section id="subunits" class="content-section">
+    <div class="subunits-header" style="text-align: center; margin-bottom: 40px;">
+        <h2 class="glow-text" style="font-size: 2.5rem; letter-spacing: 5px;">JEDNOSTKI WEWNĘTRZNE</h2>
+        <p style="color: #64748b; font-style: italic;">"Excellence through specialization"</p>
+    </div>
+
+    <div class="subunits-grid">
+        <div class="unit-card td-card">
+            <div class="unit-badge"><i class="fas fa-tachometer-alt"></i></div>
+            <div class="unit-content">
+                <h2 class="unit-title">TD</h2>
+                <span class="unit-subtitle">Training Division</span>
+                <div class="unit-divider"></div>
+                <p>Zadanie jednostki szkoleniowej Odpowiada za realizację szerokiego zakresu treningów oraz wspieranie akademii i innych instytucji zajmujących się szkoleniami. Może również organizować własne programy edukacyjne, o ile zostaną one uzgodnione z High Command.</p>
+                <ul class="unit-tags">
+                    <li><i class="fas fa-bolt"></i> Przeprowadza szkolenia</li>
+                   <li><i class="fas fa-pencil"></i> Zajmuje się szkoleniem nowych funkcjonariuszy</li>
+                </ul>
+            </div>
+            <div class="card-glow"></div>
+        </div>
+
+        <div class="unit-card swat-card">
+            <div class="unit-badge"><i class="fas fa-crosshairs"></i></div>
+            <div class="unit-content">
+                <h2 class="unit-title">SWAT</h2>
+                <span class="unit-subtitle">Special Weapons & Tactics</span>
+                <div class="unit-divider"></div>
+                <p>Jednostka ta pełni funkcję sił szybkiego reagowania, wyspecjalizowanych w neutralizacji zagrożeń o wysokim stopniu ryzyka. Ich główne obowiązki obejmują likwidację struktur przestępczych, przeciwdziałanie aktom terroru oraz udział w operacjach specjalnych koordynowanych przez High Command lub dowódcę S.W.A.T.</p>
+                <ul class="unit-tags">
+                    <li><i class="fas fa-shield-alt"></i> odbijanie zakładników</li>
+                    <li><i class="fas fa-skull"></i> reagowanie na ataki terrorystyczne</li>
+                </ul>
+            </div>
+            <div class="card-glow"></div>
+        </div>
+
+        <div class="unit-card aiad-card">
+            <div class="unit-badge"><i class="fas fa-fingerprint"></i></div>
+            <div class="unit-content">
+                <h2 class="unit-title">AIAD</h2>
+                <span class="unit-subtitle">Administrative Internal Affairs Division</span>
+                <div class="unit-divider"></div>
+                <p>Jednostka odpowiada za obserwację i ocenę pracy funkcjonariuszy, w tym ich celów, działań, zachowania oraz używanego wyposażenia. Każdy inspektor sporządza raport dla High Command dotyczący przydzielonego funkcjonariusza. Tożsamość członków A.I.A.D jest jawna.</p>
+                <ul class="unit-tags">
+                    <li><i class="fas fa-eye"></i> kontroluje funkcjonariuszy policji</li>
+                    <li><i class="fas fa-file-contract"></i> bada nadużycia, korupcję i złamanie procedur</li>
+                </ul>
+            </div>
+            <div class="card-glow"></div>
+        </div>
+
+        <div class="unit-card dtu-card">
+            <div class="unit-badge"><i class="fas fa-microscope"></i></div>
+            <div class="unit-content">
+                <h2 class="unit-title">DTU</h2>
+                <span class="unit-subtitle">Detective Tactical Unit</span>
+                <div class="unit-divider"></div>
+                <p>Zespół odpowiedzialny za prowadzenie dochodzeń w sprawach przestępstw na terenie całej wyspy. Do ich zadań należy ustalanie przebiegu zdarzeń, identyfikacja sprawców oraz doprowadzanie ich przed wymiar sprawiedliwości. Funkcjonariusze D.T.U zajmują się także zbieraniem dowodów, analizą śladów oraz rozmowami ze świadkami.</p>
+                <ul class="unit-tags">
+                    <li><i class="fas fa-search"></i> prowadzi śledztwa kryminalne</li>
+                    <li><i class="fas fa-brain"></i> zbiera dowody i przesłuchuje podejrzanych</li>
+                </ul>
+            </div>
+            <div class="card-glow"></div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+<section id="structure" class="content-section">
+    <div class="structure-panel">
+        <h2 class="glow-text" style="text-align:center; margin-bottom: 40px;">KADRA LSPD</h2>
+
+        <div id="section-hc">
+            <h3 class="panel-label" style="color:#ffd700;">HIGH COMMAND [01-03]</h3>
+            <div id="rank-hc" class="dynamic-grid"></div>
+        </div>
+
+        <div id="section-cmd">
+            <h3 class="panel-label" style="color:#ff4d4d;">COMMANDER [04-06]</h3>
+            <div id="rank-commander" class="dynamic-grid"></div>
+        </div>
+
+        <div id="section-cpt">
+            <h3 class="panel-label">CAPTAINS (III, II, I)</h3>
+            <div id="rank-captain-3" class="dynamic-grid"></div>
+            <div id="rank-captain-2" class="dynamic-grid"></div>
+            <div id="rank-captain-1" class="dynamic-grid"></div>
+        </div>
+
+        <div id="section-lt">
+            <h3 class="panel-label">LIEUTENANTS (II, I)</h3>
+            <div id="rank-lt-2" class="dynamic-grid"></div>
+            <div id="rank-lt-1" class="dynamic-grid"></div>
+        </div>
+
+        <div id="section-sgt">
+            <h3 class="panel-label">SERGEANTS (II, I)</h3>
+            <div id="rank-sgt-2" class="dynamic-grid"></div>
+            <div id="rank-sgt-1" class="dynamic-grid"></div>
+        </div>
+
+        <div id="section-ofc">
+            <h3 class="panel-label">OFFICERS (III, II, I)</h3>
+            <div id="rank-ofc-3" class="dynamic-grid"></div>
+            <div id="rank-ofc-2" class="dynamic-grid"></div>
+            <div id="rank-ofc-1" class="dynamic-grid"></div>
+        </div>
+
+        <div id="section-cadet">
+            <h3 class="panel-label" style="color:#aaaaaa;">CADETS</h3>
+            <div id="rank-cadet" class="dynamic-grid"></div>
+        </div>
+    </div>
+</section>
+
+
+<body>
+    <div class="overlay"></div>
+    <div class="container">
+
+</div>
+    </section>
+
+
+
+
+    <section id="staff-area" class="content-section">
+    <div id="login-screen" class="form-panel" style="text-align: center;">
+        <i class="fas fa-user-shield" style="font-size: 4rem; color: #38bdf8; margin-bottom: 20px;"></i>
+        <h2 class="glow-text">STREFA FUNKCJONARIUSZA</h2>
+        <p>Wymagana autoryzacja systemem Discord OAuth2</p>
+        <button onclick="fakeDiscordLogin()" class="btn-apply-cyber" style="background: #5865f2;">
+            <i class="fab fa-discord"></i> ZALOGUJ PRZEZ DISCORD
+        </button>
+    </div>
+
+    <div id="staff-dashboard" class="form-panel" style="display: none; max-width: 1000px;">
+        <div class="staff-header" style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #222; padding-bottom: 15px;">
+            <div>
+                <h3 style="margin: 0;">Witaj, <span id="user-name" style="color: #38bdf8;">Officer</span></h3>
+                <small style="color: #475569;">Ranga: High Command | Jednostka: TD</small>
+            </div>
+            <button onclick="location.reload()" class="btn-refresh">WYLOGUJ</button>
+        </div>
+
+        <div class="staff-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 30px;">
+            <div class="unit-card" style="background: rgba(0,0,0,0.3);">
+                <h4><i class="fas fa-graduation-cap"></i> PANEL SZKOLEŃ (TD)</h4>
+                <div style="text-align: left; font-size: 0.8rem;">
+                    <div class="training-row">Kadet: Adam Nowak - [OCZEKUJE] <button class="btn-refresh">ZATWIERDŹ</button></div>
+                    <div class="training-row">Officer: Jan Kowalski - [W TRAKCIE]</div>
+                </div>
+            </div>
+            
+            <div class="unit-card" style="background: rgba(0,0,0,0.3);">
+                <h4><i class="fas fa-gavel"></i> REJESTR KAR (AIAD)</h4>
+                <input type="text" placeholder="Nick funkcjonariusza..." class="staff-input">
+                <button class="btn-apply-cyber" style="padding: 5px 15px; font-size: 0.7rem;">NADAJ WPIS</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+    </div> <footer class="credits">
+        Made by: zxyes & smerf7110
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
